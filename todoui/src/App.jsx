@@ -1,23 +1,27 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import Tasks from './components/tasks/Tasks'
+import { useState, useEffect } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
 
 
 function App() {
-const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([]);
 
-useEffect(()=> {
-  fetch('http://localhost:8000/tasks/')
-  .then((res) => res.json())
-  .then((task) => setTasks(task))
-}, [])
+  useEffect(() => {
+    fetch("http://localhost:8000/tasks/")
+      .then((res) => res.json())
+      .then((task) => setTasks(task));
+  }, []);
 
   return (
-    <div className="App">
+    <Layout>
+      {/* <Routes>
+       
+      </Routes> */}
 
-<Tasks tasks={tasks}/>
-    </div>
-  )
+
+    </Layout>
+  );
 }
 
-export default App
+export default App;
