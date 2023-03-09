@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import Day from "./components/dates/Day";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       {/* <Routes>
        
       </Routes> */}
-
+<Day />
 
     </Layout>
   );
