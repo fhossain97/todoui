@@ -8,7 +8,7 @@ const NewTasks = ({ addTask }) => {
     description: "",
   });
 
-//   let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -19,19 +19,16 @@ const NewTasks = ({ addTask }) => {
     const newTask = new FormData();
     newTask.append("title", formData.title);
     newTask.append("description", formData.description);
-    console.log(newTask, "newTask");
-    console.log(formData, "Form Data");
+    console.log(formData);
 
     axios.post(`${import.meta.env.VITE_BBURL}`, newTask).then((res) => {
-        console.log(res, "Res from newTask");
-        setFormData(formData);
-        addTask(res.data);
-        console.log(res.data, "res.data");
-        // navigate("/tasks", { replace: true });
-      });
+      console.log(res, "Res from newTask");
+      setFormData(formData);
+      addTask(res.data);
+      console.log(res.data);
+      navigate("/home", { replace: true });
+    });
   };
-
-
 
   return (
     <div className="box-container">
@@ -41,8 +38,8 @@ const NewTasks = ({ addTask }) => {
           <div>
             <input
               id="title"
-              placeholder="Title"
               name="title"
+              placeholder="Title"
               type="text"
               onChange={handleChange}
             />
@@ -50,8 +47,8 @@ const NewTasks = ({ addTask }) => {
           <div>
             <input
               id="description"
-              placeholder="Description"
               name="description"
+              placeholder="Description"
               type="text"
               onChange={handleChange}
             />

@@ -18,17 +18,19 @@ function App() {
 
   const addTask = (task) => {
     setTasks([...tasks, task])
-
+console.log(task)
   }
 
   return (
     <Layout>
-      {/* <Routes>
+      <Routes>
+        <Route path='/home' element={<NewTasks addTask={addTask}/>} />
+        {/* <Route path='/' element={<Tasks tasks={tasks}/>} /> */}
        
-      </Routes> */}
+      </Routes>
 {/* <Day /> */}
-<NewTasks addTask={addTask}/>
-<Tasks tasks={tasks}/>
+{/* <NewTasks addTask={addTask}/>
+<Tasks tasks={tasks}/> */}
 
     </Layout>
   );

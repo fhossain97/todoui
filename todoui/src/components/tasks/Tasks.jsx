@@ -5,7 +5,7 @@ const Tasks = ({ tasks }) => {
     <div>
       {tasks.length === 0
         ? "No tasks on board"
-        : tasks &&
+        : 
           tasks.map((task) => {
             return <Task key={task._id} task={task} />;
           })}
