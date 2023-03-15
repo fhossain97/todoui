@@ -10,24 +10,23 @@ const NewTasks = ({ addTask }) => {
 
   let navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = new FormData();
-    newTask.append("title", formData.title);
-    newTask.append("description", formData.description);
-    console.log(formData);
-
-    axios.post(`${import.meta.env.VITE_BBURL}`, newTask).then((res) => {
-      console.log(res, "Res from newTask");
-      setFormData(formData);
+    const tasks = new FormData();
+    tasks.append("title", formData.title);
+    tasks.append("description", formData.description);
+    axios.post(`${import.meta.env.VITE_BBURL}new/`, tasks).then((res) => {
+      setFormData({
+        title: "",
+        description: "",
+      });
       addTask(res.data);
-      console.log(res.data);
-      navigate("/home", { replace: true });
+      navigate("/", { replace: true });
     });
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   return (
@@ -53,7 +52,10 @@ const NewTasks = ({ addTask }) => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">+</button>
+          <div>
+            {" "}
+            <button type="submit">+</button>
+          </div>
         </form>
       </div>
     </div>
