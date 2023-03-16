@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const NewTasks = ({ addTask }) => {
@@ -8,21 +7,25 @@ const NewTasks = ({ addTask }) => {
     description: "",
   });
 
-  let navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const tasks = new FormData();
     tasks.append("title", formData.title);
     tasks.append("description", formData.description);
-    axios.post(`${import.meta.env.VITE_BBURL}new/`, tasks).then((res) => {
-      setFormData({
-        title: "",
-        description: "",
+    axios
+      .post(`${import.meta.env.VITE_BBURL}/`, tasks, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setFormData({
+          title: "",
+          description: "",
+        });
+        addTask(res.data);
+        window.location.reload();
       });
-      addTask(res.data);
-      navigate("/", { replace: true });
-    });
   };
 
   const handleChange = (e) => {
