@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Task from "./Task";
 import NewTasks from "./NewTasks";
+import axios from 'axios'
 
 const Tasks = ({ tasks, updateTaskState }) => {
   const [task, setTask] = useState([]);
 
+  const addToTask = (x) => {
+    setTask([...task, x]);
+  };
   const deleteTask = (id) => {
     axios.delete(`${import.meta.env.VITE_BBURL}/${id}`,{
       headers: {
@@ -15,17 +19,6 @@ const Tasks = ({ tasks, updateTaskState }) => {
       window.location.reload()
     });
   };
-
-  const addToTask = (x) => {
-    setTask([...task, x]);
-  };
-
-// let {id} = useParams()
-// useEffect(()=> {
-//   fetch(`${import.meta.env.VITE_BBURL}`)
-//   .then((res)=> res.json())
-//   .then((data) => setTask(data))
-// },[id])
 
 
   return (

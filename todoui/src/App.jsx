@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 // import Day from "./components/dates/Day";
 import Tasks from "./components/tasks/Tasks";
+import TaskView from "./components/tasks/TaskView";
 
 
 function App() {
@@ -19,10 +20,12 @@ function App() {
     setTasks(tasks.filter((task) => task._id !== id))
   }
 
+
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Tasks tasks={tasks} updateTaskState={updateTaskState}/>} />
+        <Route path="/" element={<Tasks tasks={tasks}  updateTaskState={updateTaskState} />} />
+        <Route path='/:id' element={<TaskView tasks={tasks} updateTaskState={updateTaskState} />} />
       </Routes>
       {/* <Day /> */}
     </Layout>
