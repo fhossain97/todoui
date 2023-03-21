@@ -6,7 +6,6 @@ import Layout from "./components/layout/Layout";
 import Tasks from "./components/tasks/Tasks";
 import TaskView from "./components/tasks/TaskView";
 
-
 function App() {
   const [tasks, setTasks] = useState([]);
 
@@ -17,15 +16,20 @@ function App() {
   }, []);
 
   const updateTaskState = (id) => {
-    setTasks(tasks.filter((task) => task._id !== id))
-  }
-
+    setTasks(tasks.filter((task) => task._id !== id));
+  };
 
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Tasks tasks={tasks}  updateTaskState={updateTaskState} />} />
-        <Route path='/:id' element={<TaskView tasks={tasks} updateTaskState={updateTaskState} />} />
+        <Route
+          path="/"
+          element={<Tasks tasks={tasks} updateTaskState={updateTaskState} />}
+        />
+        <Route
+          path="/:id"
+          element={<TaskView tasks={tasks} updateTaskState={updateTaskState} />}
+        />
       </Routes>
       {/* <Day /> */}
     </Layout>

@@ -1,29 +1,27 @@
 import {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const TaskView = ({tasks, updateTaskState}) => {
 
+  let navigate = useNavigate()
+  let {id} =useParams()
+const [task, setTask] = useState()
+
   const deleteTask = (id) => {
-    axios.delete(`${import.meta.env.VITE_BBURL}/${id}`,{
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
+    axios.delete(`${import.meta.env.VITE_BBURL}/${id}`).then((res) => {
       updateTaskState(id);
-      window.location.reload()
-    });
+      return navigate('/')
+    })
   };
 
-let {id} =useParams()
-const [task, setTask] = useState()
+
 
 useEffect(() => {
   fetch(`${import.meta.env.VITE_BBURL}/${id}`)
     .then((res) => res.json())
     .then((task) => setTask(task));
 }, [id]);
-
 
   return (
     <div>

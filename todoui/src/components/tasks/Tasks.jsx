@@ -10,13 +10,12 @@ const Tasks = ({ tasks, updateTaskState }) => {
     setTask([...task, x]);
   };
   const deleteTask = (id) => {
-    axios.delete(`${import.meta.env.VITE_BBURL}/${id}`,{
+    axios.delete(`${import.meta.env.VITE_BBURL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
     }).then((res) => {
       updateTaskState(id);
-      window.location.reload()
     });
   };
 
