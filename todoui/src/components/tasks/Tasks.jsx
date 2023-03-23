@@ -9,15 +9,14 @@ const Tasks = ({ tasks, updateTaskState }) => {
   const addToTask = (x) => {
     setTask([...task, x]);
   };
-  const deleteTask = (id) => {
-    axios.delete(`${import.meta.env.VITE_BBURL}/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      updateTaskState(id);
+
+  const deleteTask = () => {
+    axios.delete(`${import.meta.env.VITE_BBURL}/`).then((res) => {
+      updateTaskState();
+      window.location.reload();
     });
   };
+
 
 
   return (
@@ -26,8 +25,12 @@ const Tasks = ({ tasks, updateTaskState }) => {
       {tasks.length === 0
         ? "No tasks on board"
         : tasks.map((task) => {
-            return <Task key={task._id} deleteTask={deleteTask} task={task} />;
-          })}
+            return(
+              <Task key={task._id} deleteTask={deleteTask} task={task} />
+          
+            ) 
+          })
+          }
     </div>
   );
 };

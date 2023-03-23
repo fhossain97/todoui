@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 // import Day from "./components/dates/Day";
 import Tasks from "./components/tasks/Tasks";
-import TaskView from "./components/tasks/TaskView";
+import EditTasks from "./components/tasks/EditTasks";
+
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -28,7 +29,7 @@ function App() {
         />
         <Route
           path="/:id"
-          element={<TaskView tasks={tasks} updateTaskState={updateTaskState} />}
+          element={<EditTasks setTasks={setTasks} />}
         />
       </Routes>
       {/* <Day /> */}

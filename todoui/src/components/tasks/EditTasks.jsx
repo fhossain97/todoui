@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 
-const EditTasks = (setTasks) => {
+const EditTasks = ({setTasks}) => {
     let {id} = useParams()
 
     const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ const EditTasks = (setTasks) => {
       tasks.append("title", formData.title);
       tasks.append("description", formData.description);
       axios
-        .put(`${import.meta.env.VITE_BBURL}/${id}`, tasks, {
+        .put(`${import.meta.env.VITE_BBURL}/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -37,20 +37,12 @@ const EditTasks = (setTasks) => {
 
     useEffect(() => {
         axios
-        .get(`${import.meta.env.VITE_BBURL}${id}`).then((res) => {
+        .get(`${import.meta.env.VITE_BBURL}/${id}`).then((res) => {
             setFormData(res.data)
         })
     }, [id])
 
   return (
-//     <div>
-//     {task && (
-//       <div>
-//         <h1>{task.title}</h1>
-//         <div>{task.description}</div>
-//       </div>
-//     )}
-//   </div>
 <div className="box-container">
 <div className="form-container">
   <form onSubmit={handleSubmit}>
